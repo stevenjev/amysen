@@ -8,6 +8,9 @@ esphome:
   name_add_mac_suffix: true
   platform: ESP8266
   board: esp01_1m
+  project:
+    name: amysenplug.esphomeconfig
+    version: "1.0"
 
 # To be able to get logs from the device via serial and api.
 logger:
@@ -22,10 +25,18 @@ ota:
 wifi:
   # Set up a wifi access point using the device name above
   ap:
-
+  manual_ip:
+    static_ip: 192.168.20.243
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0
+    
 # In combination with the `ap` this allows the user
 # to provision wifi credentials to the device.
 captive_portal:
+
+dashboard_import:
+  package_import_url: github://stevenjev/amysen/amysenplug-esphome-config.yaml
+  import_full_config: false # or true
 
 ##### SETTING UP SMART PLUG FUNCTIONS #####
 #Device LED Light
