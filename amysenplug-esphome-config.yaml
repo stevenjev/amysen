@@ -9,8 +9,8 @@ esphome:
   platform: ESP8266
   board: esp01_1m
   project:
-    name: amysenplug.esphomeconfig
-    version: "1.0"
+    name: "stevenjev.amysen"
+    version: "2024.01.12"
 
 
 # To be able to get logs from the device via serial and api.
