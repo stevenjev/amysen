@@ -1,14 +1,13 @@
-esphome:
-  name: project-template
-  friendly_name: Project Template
-  # Automatically add the mac address to the name
-  # so you can use a single firmware for all devices
-  name_add_mac_suffix: true
+substitutions:
+  name: amysen-smart-plug
+  friendly_name: Amysen Smart Plug
 
-esp32:
-  board: esp32dev
-  framework:
-    type: esp-idf
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  name_add_mac_suffix: true
+  platform: ESP8266
+  board: esp01_1m
 
 # To be able to get logs from the device via serial and api.
 logger:
@@ -27,3 +26,36 @@ wifi:
 # In combination with the `ap` this allows the user
 # to provision wifi credentials to the device.
 captive_portal:
+
+##### SETTING UP SMART PLUG FUNCTIONS #####
+#Device LED Light
+light:
+  - platform: status_led
+    name: "${friendly_name} Status LED"
+    id: green_led
+    disabled_by_defaut: true
+    pin: 
+      number: GPIO13
+      inverted: true
+
+#Device Relay
+switch:
+  - platform: gpio
+    name: ${friendly_name}
+    pin: GPIO14
+    id: relay
+    # Tie LED to relay
+    on_turn_on:
+    - light.turn_on: green_led
+    on_turn_off:
+    - light.turn_off: green_led  
+
+#Device Button
+binary_sensor:
+  - platform: gpio
+    pin: 
+      number: GPIO1
+    name: ${friendly_name} Power Button
+    on_press:
+      - switch.toggle: relay
+    internal: true
