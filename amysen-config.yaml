@@ -1,7 +1,7 @@
 # These substitutions allow the end user to override certain values
 substitutions:
-  name: none
-  friendly_name: "Amysen Smart Plug"
+  name: Amysen
+  friendly_name: "Smart Plug"
 
 esphome:
   name: "${name}"
