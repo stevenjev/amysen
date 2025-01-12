@@ -16,6 +16,8 @@ esphome:
   project:
     name: esphome.project-template
     version: "1.0"
+  platform: ESP8266
+  board: esp01_1m
 
 # To be able to get logs from the device via serial and api.
 logger:
