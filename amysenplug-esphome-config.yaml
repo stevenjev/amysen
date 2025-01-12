@@ -1,5 +1,5 @@
 substitutions:
-  name: amysen-smart-plug
+  name: amysen
   friendly_name: Smart Plug
 
 esphome:
