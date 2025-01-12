@@ -63,6 +63,8 @@ switch:
 #Device Button
 binary_sensor:
   - platform: gpio
+    filter:
+      - invert: 
     pin: 
       number: GPIO1
     name: ${friendly_name} Power Button
