@@ -12,6 +12,7 @@ esphome:
     name: amysenplug.esphomeconfig
     version: "1.0"
 
+
 # To be able to get logs from the device via serial and api.
 logger:
 
@@ -25,11 +26,7 @@ ota:
 wifi:
   # Set up a wifi access point using the device name above
   ap:
-  manual_ip:
-    static_ip: 192.168.20.243
-    gateway: 192.168.1.1
-    subnet: 255.255.255.0
-    
+     
 # In combination with the `ap` this allows the user
 # to provision wifi credentials to the device.
 captive_portal:
@@ -66,6 +63,19 @@ binary_sensor:
     pin: 
       number: GPIO1
     name: ${friendly_name} Power Button
-    on_press:
-      - switch.toggle: relay
+    on_multi_click:
+      - timing:
+        - ON for at most 1s
+        - OFF for at least 0.2s
+        then:
+          - switch.toggle: relay
+      - timing:
+          - ON for at least 5s
+        then:
+          - button.press: Reset
     internal: true
+
+button:
+  - platform: factory_reset
+    name: Restart with Factory Default Settings
+    id: Reset
