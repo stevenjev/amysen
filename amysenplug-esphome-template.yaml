@@ -3,7 +3,7 @@ substitutions:
   friendly_name: Amysen Smart Plug
 
 esphome:
-  name: ${name}
+  name: None
   friendly_name: ${friendly_name}
   name_add_mac_suffix: true
   platform: ESP8266
